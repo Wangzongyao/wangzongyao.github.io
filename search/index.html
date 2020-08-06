@@ -8,8 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#202020"/>
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <!-- <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script> -->
-  <!-- <script src="/js/search.js"></script> -->
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
@@ -270,10 +268,8 @@
             };
           }).get();
           var $input = document.getElementById(search_id);
-          console.log('input', $input);
           if (!$input) return;
           var $resultContent = document.getElementById(content_id);
-          console.log('resultContent', $resultContent);
             $input.addEventListener('input', function() {
               var str = '<ul class=\"search-result-list\">';
               var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
