@@ -1,0 +1,323 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+  
+  
+    <meta name="keywords" content="webpack," />
+  
+
+  
+    <meta name="description" content="前端路上的踩坑侠" />
+  
+  
+  <link rel="icon" type="image/x-icon" href="/logo.png">
+  <title>webpack【dll】 [ 土堆先生 ]</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 5.0.0"></head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    <img class="avatar" src="https://wangzongyao.github.io/images/logo.png">
+    <span class="title">土堆先生</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/tags" class="pure-menu-link">标签</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+          
+      
+          
+            <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+          
+      
+  </ul>
+   
+</nav>
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        webpack【dll】
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-08-29T16:00:00.000Z">
+        2020-08-30
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 4 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <h3 id="webpack【dll】"><a href="#webpack【dll】" class="headerlink" title="webpack【dll】"></a>webpack【dll】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><h5 id="1-名词解释"><a href="#1-名词解释" class="headerlink" title="1.名词解释"></a>1.名词解释</h5><p>dll（Dynamic Link Library）动态链接库，常见在window系统中，当执行某一个程序时，相应的DLL文件就会被调用。</p>
+<p>将更改不频繁的代码进行单独编译。这将改善引用程序的编译速度，但是它增加了构建过程的复杂性。</p>
+<h5 id="2-为什么使用dll"><a href="#2-为什么使用dll" class="headerlink" title="2.为什么使用dll"></a>2.为什么使用dll</h5><ul>
+<li>把复用性较高的第三方模块打包到动态链接库中，在不升级这些库的情况下，动态库不需要重新打包，每次构建只重新打包业务代码；</li>
+<li>亦可将同类资源各自打包第三方，例如react家族、lodash工具库等；</li>
+</ul>
+<h5 id="3-如何使用dll"><a href="#3-如何使用dll" class="headerlink" title="3.如何使用dll"></a>3.如何使用dll</h5><p>使用<code>DLLPlugin</code> 和 <code>DLLReferencePlugin</code> 实现了拆分 bundles，同时还大大提升了构建的速度；使用 <code>AddAssetHtmlPlugin</code>插件将打包后的 dll bundles插入到页面中；</p>
+<p>Github webpack给出了具体的demo和讲解，<a target="_blank" rel="noopener" href="https://github.com/webpack/webpack/tree/master/examples/dll-user">戳</a></p>
+<h6 id="3-1-DLLPlugin"><a href="#3-1-DLLPlugin" class="headerlink" title="3.1 DLLPlugin"></a>3.1 DLLPlugin</h6><p>新建webpack.dll.js配置文件，plugin参数配置如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> LIBRARY = <span class="string">&#x27;[name]_[hash]&#x27;</span></span><br><span class="line">output: &#123;</span><br><span class="line">        filename: <span class="string">`<span class="subst">$&#123;LIBRARY&#125;</span>.dll.js`</span>,</span><br><span class="line">        path: path.join(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">        library: LIBRARY,</span><br><span class="line">&#125;,</span><br><span class="line">plugins: [</span><br><span class="line">        <span class="keyword">new</span> webpack.DllPlugin(&#123;</span><br><span class="line">            <span class="comment">// manifest json 文件的绝对路径 (输出文件)</span></span><br><span class="line">            path: path.join(__dirname, <span class="string">&#x27;dist&#x27;</span>, <span class="string">&#x27;[name]-manifest.json&#x27;</span>),</span><br><span class="line">            <span class="comment">// 暴露出的 DLL 的函数名</span></span><br><span class="line">            name: LIBRARY,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行产出</p>
+<ul>
+<li><p>*.dll.js：文件里是使用数组保存的模块，索引值就作为id；</p>
+</li>
+<li><p>*.manifest.json：文件里，是用来描述对应的dll文件里保存的模块；</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;vendors_b5543b7c65236c1de403&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;content&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;./node_modules/@redux-saga/core/dist/io-6de156f3.js&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;id&quot;</span>: <span class="number">0</span>,</span><br><span class="line">            <span class="attr">&quot;buildMeta&quot;</span>: &#123;</span><br><span class="line">                <span class="attr">&quot;exportsType&quot;</span>: <span class="string">&quot;namespace&quot;</span>,</span><br><span class="line">                <span class="attr">&quot;providedExports&quot;</span>: []</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h6 id="3-2-DLLReferencePlugin"><a href="#3-2-DLLReferencePlugin" class="headerlink" title="3.2 DLLReferencePlugin"></a>3.2 DLLReferencePlugin</h6><p>在webpack.common.js配置文件中，添加</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">new</span> webpack.DllReferencePlugin(&#123;</span><br><span class="line">       context: __dirname,</span><br><span class="line">       <span class="comment">// eslint-disable-next-line global-require</span></span><br><span class="line">       manifest: <span class="built_in">require</span>(<span class="string">&#x27;./dist/vendors-manifest.json&#x27;</span>),</span><br><span class="line">&#125;),</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>DllReferencePlugin去 manifest.json 文件读取 name 字段的值，把值的内容作为在从全局变量中获取动态链接库中内容时的全局变量名；因此，在 webpack.dll.js中，DllPlugin 中的 name 参数必须和 output.library 中保持一致。</p>
+<h6 id="3-3-AddAssetHtmlPlugin"><a href="#3-3-AddAssetHtmlPlugin" class="headerlink" title="3.3 AddAssetHtmlPlugin"></a>3.3 AddAssetHtmlPlugin</h6><p>讲打包后的dll插入到入口html中</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> AddAssetHtmlPlugin(&#123;</span><br><span class="line">            filepath: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>, <span class="string">&#x27;*.dll.js&#x27;</span>),</span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack%E3%80%90dll%E3%80%91"><span class="toc-text">webpack【dll】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="toc-text">1.名词解释</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8dll"><span class="toc-text">2.为什么使用dll</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8dll"><span class="toc-text">3.如何使用dll</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#3-1-DLLPlugin"><span class="toc-text">3.1 DLLPlugin</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-2-DLLReferencePlugin"><span class="toc-text">3.2 DLLReferencePlugin</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-3-AddAssetHtmlPlugin"><span class="toc-text">3.3 AddAssetHtmlPlugin</span></a></li></ol></li></ol></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<!-- 删除许可说明 -->
+<!-- <div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div> -->
+<!-- 删除分享图片 -->
+<!-- <div class="share" style="width: 100%;">
+  <img src="https://kevinofneu-blog-static.oss-cn-beijing.aliyuncs.com/static/2018-12-10-qrcode_for_gh_ffacf5722095_258.jpg" alt="Running Geek" style="margin: auto; display: block;"/>
+
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">老铁们关注走一走，不迷路</div>
+  
+</div>
+ -->
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/08/29/webpack-temp-string/" rel="next" title="webpack【可替换模板字符串[name]/[id]/...等变量名释义】">
+          webpack【可替换模板字符串[name]/[id]/...等变量名释义】
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/08/30/BrowserRouter/" rel="prev" title="react-router：browserRouter与hashRouter">
+            react-router：browserRouter与hashRouter
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="/">首页</a> |
+        <a class="bottom-item" href="https://github.com/Wangzongyao/" target="_blank">GitHub</a>
+    </div>
+</footer>
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+</body>
+</html>
