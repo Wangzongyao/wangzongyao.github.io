@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>webpack（一）：[name]/[chunkname]/[id]等变量名释义 [ 土堆先生 ]</title>
+  <title>webpack：可替换模板字符串[name]/[id]/...等变量名释义 [ 土堆先生 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -72,7 +72,7 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        webpack（一）：[name]/[chunkname]/[id]等变量名释义
+        webpack：可替换模板字符串[name]/[id]/...等变量名释义
       </h1>
       <span>
         
@@ -92,25 +92,23 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 2 分钟</span>
     </header>
 
     <div class="post-content">
-      <h3 id="webpack（一）"><a href="#webpack（一）" class="headerlink" title="webpack（一）"></a>webpack（一）</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等替换符</p>
-<h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><h5 id="2-chunkname"><a href="#2-chunkname" class="headerlink" title="2.[chunkname]"></a>2.[chunkname]</h5><h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>4.[id]</p>
-<p>5.[]</p>
-<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+      <h3 id="webpack【可替换模板字符串】"><a href="#webpack【可替换模板字符串】" class="headerlink" title="webpack【可替换模板字符串】"></a>webpack【<strong>可替换模板字符串</strong>】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等占位符，这些占位符多是用来解决<strong>多个入口起点</strong>(entry point)、<strong>代码拆分</strong>(code splitting)或各种插件(plugin)创建<strong>多个 bundle</strong>时的名称或者lib。</p>
+<p>webpack中通过内置的<a target="_blank" rel="noopener" href="https://github.com/webpack/webpack/blob/master/lib/TemplatedPathPlugin.js">TemplatedPathPlugin</a>实现了占位符的替换处理工作。</p>
+<h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    entry: &#123; <span class="attr">index</span>: <span class="string">&quot;./index.js&quot;</span> &#125;,</span><br><span class="line">    output: &#123; <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>[name]一般指的是entry入口定义的输入文件key值，例如此处为index。</p>
+<p>多个入口key分别对应各自的[name]。</p>
+<h5 id="2-id"><a href="#2-id" class="headerlink" title="2.[id]"></a>2.[id]</h5><p>模块标识符(module identifier)。</p>
+<p>id一般用于动态加载模块时，一次构建后，动态加载模块生成的id 。</p>
+<h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>模块标识符(module identifier)的 hash。</p>
+<p>hash是有webpack是一次构建打包生成的hash。</p>
+<h5 id="4-chunkhash"><a href="#4-chunkhash" class="headerlink" title="4.[chunkhash]"></a>4.[chunkhash]</h5><p>根据入口的每一个chunk的内容，生成独有的一份hash。webpack以js为入口，每一个入口通过配置合理的插件可以差分多个文件，例如剥离CSS等，但这些资源文件都归属一个chunk。</p>
+<p>一旦chunk内容发生（可以理解为入口文件未做剥离前的文件构成发生改变），该chunk的hash就会发生变化。</p>
+<h5 id="5-contenthash"><a href="#5-contenthash" class="headerlink" title="5.[contenthash]"></a>5.[contenthash]</h5><p>文件内容 hash，<strong>每个资源</strong>生成的 hash 都是不同的。</p>
 
     </div>
 
@@ -120,7 +118,7 @@
     
   <div id="toc" class="toc-article">
     <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-text">webpack（一）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90"><span class="toc-text">二、名词解析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-name"><span class="toc-text">1.[name]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-chunkname"><span class="toc-text">2.[chunkname]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-hash"><span class="toc-text">3.[hash]</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack%E3%80%90%E5%8F%AF%E6%9B%BF%E6%8D%A2%E6%A8%A1%E6%9D%BF%E5%AD%97%E7%AC%A6%E4%B8%B2%E3%80%91"><span class="toc-text">webpack【可替换模板字符串】</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="toc-text">一、前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E6%9E%90"><span class="toc-text">二、名词解析</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-name"><span class="toc-text">1.[name]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-id"><span class="toc-text">2.[id]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-hash"><span class="toc-text">3.[hash]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-chunkhash"><span class="toc-text">4.[chunkhash]</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-contenthash"><span class="toc-text">5.[contenthash]</span></a></li></ol></li></ol></li></ol>
   </div>
 
 
