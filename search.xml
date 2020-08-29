@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>react-router：browserRouter与hashRouter</title>
+      <link href="/2020/08/30/BrowserRouter/"/>
+      <url>/2020/08/30/BrowserRouter/</url>
+      
+        <content type="html"><![CDATA[<h3 id="react-router【browserRouter与hashRouter】"><a href="#react-router【browserRouter与hashRouter】" class="headerlink" title="react-router【browserRouter与hashRouter】"></a>react-router【browserRouter与hashRouter】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>构建react项目中，控制路由跳转使用react-router，react-router是以<a href="https://github.com/ReactTraining/history/blob/master/docs/getting-started.md">history</a>为基础的</p><ul><li>A “<strong>browser history</strong>“ is for use in modern web browsers that support the <a href="http://diveintohtml5.info/history.html">HTML5 history API</a> (see <a href="http://caniuse.com/#feat=history">cross-browser compatibility</a>)</li><li>A “<strong>hash history</strong>“ is for use in web browsers where you want to store the location in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLHyperlinkElementUtils/hash">hash</a> portion of the current URL <u>to avoid sending it to the server when the page reloads</u></li><li>A “<strong>memory history</strong>“ is used as a reference implementation that may be used <u>in non-browser environments</u>, like <a href="https://facebook.github.io/react-native/">React Native</a> or tests</li></ul><p>由于hash值变化不会导致浏览器向服务器发出请求，而且hash改变会触发hashchange事件，浏览器的进后退也能对其进行控制，所以人们在 html5 的 history 出现前，基本都是使用 hash 来实现前端路由的</p><h5 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h5><p>1.浏览器history对象是window对象的一部分，可通过 window.history 属性对其进行访问，其操作的是浏览器的<strong>session history</strong>，即当前回话窗口的history。这是H5提供新的特新，也是以上依赖包的基础；</p><p>2.hash值变化不会导致浏览器向服务器发出请求，且hash改变会触发hashchange事件，浏览器的进后退也能对其进行控制。在 html5 的 history 出现前，基本都是使用 hash 来实现前端路由的；</p><p>3.history依赖包提供了history.listen(myListener)方法，以供使用监听路由变化的逻辑；</p><p>4.关于使用browserRouter时，页面404的解释：没有配置historyApiFallback，即页面没有初始化路由与组件的联系（<a href="https://www.npmjs.com/package/connect-history-api-fallback">connect-history-api-fallback</a>），导致的该路由没有可渲染的组件。可通过webpack配置<code>devServer：&#123;historyApiFallback: true&#125;</code>解决；</p><h4 id="二、browser与hash对比说明"><a href="#二、browser与hash对比说明" class="headerlink" title="二、browser与hash对比说明"></a>二、browser与hash对比说明</h4><h5 id="1-hashRouter"><a href="#1-hashRouter" class="headerlink" title="1.hashRouter"></a>1.hashRouter</h5><p>使用 URL 中的 hash（#）部分去创建路由</p><h5 id="2-browserRouter"><a href="#2-browserRouter" class="headerlink" title="2.browserRouter"></a>2.browserRouter</h5><p>使用浏览器中的 History API 用于处理 URL，因此在browserHistory 模式事，URL 是指向<strong>服务器真实 URL 的资源路径</strong>！</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> react router </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webpack：可替换模板字符串[name]/[id]/...等变量名释义</title>
       <link href="/2020/08/29/webpack-temp-string/"/>
       <url>/2020/08/29/webpack-temp-string/</url>
@@ -15,25 +34,6 @@
         <tags>
             
             <tag> webpack </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>search</title>
-      <link href="/2020/08/06/search/"/>
-      <url>/2020/08/06/search/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> test </tag>
             
         </tags>
       
