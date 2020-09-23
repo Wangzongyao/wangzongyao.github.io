@@ -92,13 +92,19 @@
       <span id="busuanzi_value_page_pv"></span> 点击
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 1 分钟</span>
+      <span class="read">阅读耗时 2 分钟</span>
     </header>
 
     <div class="post-content">
       <h3 id="webpack【plugin-introduce】"><a href="#webpack【plugin-introduce】" class="headerlink" title="webpack【plugin-introduce】"></a>webpack【plugin-introduce】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>一句话概括plugin的使用场景和作用</p>
-<h5 id="二、Summary"><a href="#二、Summary" class="headerlink" title="二、Summary"></a>二、Summary</h5><p>【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mini-css-extract-plugin#extracting-css-based-on-entry">mini-css-extract-plugin</a>】：将CSS提取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持CSS和SourceMap的按需加载。</p>
+<h5 id="二、Summary"><a href="#二、Summary" class="headerlink" title="二、Summary"></a>二、Summary</h5><p>【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/html-webpack-plugin">htmlWebpackPlugin</a>】：根据模板生成html文件，提供页面配置项。</p>
+<p>【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/clean-webpack-plugin">clean-webpack-plugin</a>】：清理文件夹。</p>
+<p>【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/mini-css-extract-plugin#extracting-css-based-on-entry">mini-css-extract-plugin</a>】：将CSS提取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持CSS和SourceMap的按需加载。不建议在开发环境使用，尤其是启用HMR时，配合fast refresh插件【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/@pmmmwh/react-refresh-webpack-plugin">react-refresh-webpack-plugin</a>】CSS样式更新失效。</p>
 <p>【<a target="_blank" rel="noopener" href="https://www.npmjs.com/package/optimize-css-assets-webpack-plugin">optimize-css-assets-webpack-plugin</a>】：在Webpack构建期间搜索CSS资产，并优化\最小化CSS（默认情况下，它使用<a target="_blank" rel="noopener" href="http://github.com/ben-eb/cssnano">cssnano，</a>但可以指定自定义CSS处理器）。</p>
+<p>【provide-plugin】：自动加载模块，系统找不到变量时，会自动识别该插件提供的变量ID对应的依赖包或者变量。</p>
+<p>【exports-loader】：使用该插件导出一个全局变量（期望用户使用的变量），例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    test: <span class="built_in">require</span>.resolve(<span class="string">&#x27;globals.js&#x27;</span>), <span class="comment">// 导出的文件</span></span><br><span class="line">    use: <span class="string">&#x27;exports-loader?file,parse=helpers.parse&#x27;</span>  <span class="comment">// 导出的变量</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -133,16 +139,16 @@
       <div class="post-nav-item post-nav-next">
         
           <span>〈 </span>
-          <a href="/2020/08/29/webpack-temp-string/" rel="next" title="webpack【可替换模板字符串[name]/[id]/...等变量名释义】">
-          webpack【可替换模板字符串[name]/[id]/...等变量名释义】
+          <a href="/2020/08/29/Fast-Refresh/" rel="next" title="webpack【快速刷新fast-refresh】">
+          webpack【快速刷新fast-refresh】
           </a>
         
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2020/08/30/good-blog-url/" rel="prev" title="JS【好文链接】">
-            JS【好文链接】
+          <a href="/2020/08/30/dll/" rel="prev" title="webpack【dll】">
+            webpack【dll】
           </a>
           <span>〉</span>
         

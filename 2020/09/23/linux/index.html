@@ -11,7 +11,7 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="JavaScript," />
+    <meta name="keywords" content="前端" />
   
 
   
@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>JS【好文链接】 [ 土堆先生 ]</title>
+  <title> [ 土堆先生 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -72,19 +72,19 @@
   <article class="post" id="post">
     <header class="post-header text-center">
       <h1 class="title">
-        JS【好文链接】
+        
       </h1>
       <span>
         
-        <time class="time" datetime="2020-08-29T16:00:00.000Z">
-        2020-08-30
+        <time class="time" datetime="2020-09-23T04:41:48.091Z">
+        2020-09-23
       </time>
         
       </span>
       <span class="slash">/</span>
       <span class="post-meta">
       <span class="post-tags">
-        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a></li></ul>
+        
       </span>
     </span>
       <span class="slash">/</span>
@@ -96,18 +96,34 @@
     </header>
 
     <div class="post-content">
-      <h5 id="1、由throw-new-Error-引发的探讨"><a href="#1、由throw-new-Error-引发的探讨" class="headerlink" title="1、由throw new Error() 引发的探讨"></a>1、<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010779044">由throw new Error() 引发的探讨</a></h5><h5 id="2、PWA-饿了么实践"><a href="#2、PWA-饿了么实践" class="headerlink" title="2、PWA 饿了么实践"></a>2、<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27853228">PWA 饿了么实践</a></h5>
+      <p>1.购买服务器</p>
+<p>2.<strong>authorized_keys</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/alifrank/article/details/48241699">https://blog.csdn.net/alifrank/article/details/48241699</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xlgen157387/article/details/52669709">https://blog.csdn.net/xlgen157387/article/details/52669709</a></p>
+<p>3.install node</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38543537/article/details/90899119">https://blog.csdn.net/qq_38543537/article/details/90899119</a></p>
+<p>2.安装git,配置密钥</p>
+<p>yum install git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#1）生成密钥，一路回车、用默认选项</span><br><span class="line">ssh-keygen -t rsa              </span><br><span class="line"> </span><br><span class="line">#2）复制到粘贴板</span><br><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub | clip    # Windows</span><br><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub | pbcopy  # MacOS</span><br><span class="line"></span><br><span class="line">#3)</span><br><span class="line">github add ssh key</span><br></pre></td></tr></table></figure>
+
+<p>4.为了拉取github上的代码</p>
+<p>重置git配置：用户名与密码</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shenxiaolin/p/7896489.html">https://www.cnblogs.com/shenxiaolin/p/7896489.html</a></p>
+<p>4.部署</p>
+<p>解决部署时：Host key verification failed.的问题：ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13363553/git-error-host-key-verification-failed-when-connecting-to-remote-repository">https://stackoverflow.com/questions/13363553/git-error-host-key-verification-failed-when-connecting-to-remote-repository</a></p>
+<p>5.commit or stash your changes before deploying</p>
+<p>解决办法：pm2 deploy pm2.json production –force</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Unitech/pm2/issues/2758">https://github.com/Unitech/pm2/issues/2758</a></p>
+<p>6.安装deno，建立软连接</p>
+<p>![image-20200923152541695](/Users/wangzongyao/Library/Application Support/typora-user-images/image-20200923152541695.png)</p>
+
     </div>
 
     <div>全文完。</div>
   </article>
   <div class="toc-container">
     
-  <div id="toc" class="toc-article">
-    <strong class="toc-title">目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E7%94%B1throw-new-Error-%E5%BC%95%E5%8F%91%E7%9A%84%E6%8E%A2%E8%AE%A8"><span class="toc-text">1、由throw new Error() 引发的探讨</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81PWA-%E9%A5%BF%E4%BA%86%E4%B9%88%E5%AE%9E%E8%B7%B5"><span class="toc-text">2、PWA 饿了么实践</span></a></li></ol>
-  </div>
-
 
   </div>
 </div>
@@ -130,19 +146,14 @@
       <div class="post-nav-item post-nav-next">
         
           <span>〈 </span>
-          <a href="/2020/08/30/dll/" rel="next" title="webpack【dll】">
-          webpack【dll】
+          <a href="/2020/08/30/BrowserRouter/" rel="next" title="react-router：browserRouter与hashRouter">
+          react-router：browserRouter与hashRouter
           </a>
         
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/2020/08/30/BrowserRouter/" rel="prev" title="react-router：browserRouter与hashRouter">
-            react-router：browserRouter与hashRouter
-          </a>
-          <span>〉</span>
-        
       </div>
     </div>
   
