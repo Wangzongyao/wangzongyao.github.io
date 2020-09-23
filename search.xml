@@ -4,13 +4,19 @@
   
     
     <entry>
-      <title></title>
+      <title>Linux 服务器搭建deno</title>
       <link href="/2020/09/23/linux/"/>
       <url>/2020/09/23/linux/</url>
       
         <content type="html"><![CDATA[<p>1.购买服务器</p><p>2.<strong>authorized_keys</strong></p><p><a href="https://blog.csdn.net/alifrank/article/details/48241699">https://blog.csdn.net/alifrank/article/details/48241699</a></p><p><a href="https://blog.csdn.net/xlgen157387/article/details/52669709">https://blog.csdn.net/xlgen157387/article/details/52669709</a></p><p>3.install node</p><p><a href="https://blog.csdn.net/qq_38543537/article/details/90899119">https://blog.csdn.net/qq_38543537/article/details/90899119</a></p><p>2.安装git,配置密钥</p><p>yum install git</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#1）生成密钥，一路回车、用默认选项</span><br><span class="line">ssh-keygen -t rsa              </span><br><span class="line"> </span><br><span class="line">#2）复制到粘贴板</span><br><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub | clip    # Windows</span><br><span class="line">cat ~&#x2F;.ssh&#x2F;id_rsa.pub | pbcopy  # MacOS</span><br><span class="line"></span><br><span class="line">#3)</span><br><span class="line">github add ssh key</span><br></pre></td></tr></table></figure><p>4.为了拉取github上的代码</p><p>重置git配置：用户名与密码</p><p><a href="https://www.cnblogs.com/shenxiaolin/p/7896489.html">https://www.cnblogs.com/shenxiaolin/p/7896489.html</a></p><p>4.部署</p><p>解决部署时：Host key verification failed.的问题：ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts</p><p><a href="https://stackoverflow.com/questions/13363553/git-error-host-key-verification-failed-when-connecting-to-remote-repository">https://stackoverflow.com/questions/13363553/git-error-host-key-verification-failed-when-connecting-to-remote-repository</a></p><p>5.commit or stash your changes before deploying</p><p>解决办法：pm2 deploy pm2.json production –force</p><p><a href="https://github.com/Unitech/pm2/issues/2758">https://github.com/Unitech/pm2/issues/2758</a></p><p>6.安装deno，建立软连接</p><p>![image-20200923152541695](/Users/wangzongyao/Library/Application Support/typora-user-images/image-20200923152541695.png)</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> Linux Deno </tag>
+            
+        </tags>
       
     </entry>
     
@@ -36,25 +42,6 @@
     
     
     <entry>
-      <title>JS【好文链接】</title>
-      <link href="/2020/08/30/good-blog-url/"/>
-      <url>/2020/08/30/good-blog-url/</url>
-      
-        <content type="html"><![CDATA[<h5 id="1、由throw-new-Error-引发的探讨"><a href="#1、由throw-new-Error-引发的探讨" class="headerlink" title="1、由throw new Error() 引发的探讨"></a>1、<a href="https://segmentfault.com/a/1190000010779044">由throw new Error() 引发的探讨</a></h5><h5 id="2、PWA-饿了么实践"><a href="#2、PWA-饿了么实践" class="headerlink" title="2、PWA 饿了么实践"></a>2、<a href="https://zhuanlan.zhihu.com/p/27853228">PWA 饿了么实践</a></h5>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> JavaScript </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>webpack【dll】</title>
       <link href="/2020/08/30/dll/"/>
       <url>/2020/08/30/dll/</url>
@@ -66,6 +53,25 @@
         <tags>
             
             <tag> webpack </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>JS【好文链接】</title>
+      <link href="/2020/08/30/good-blog-url/"/>
+      <url>/2020/08/30/good-blog-url/</url>
+      
+        <content type="html"><![CDATA[<h5 id="1、由throw-new-Error-引发的探讨"><a href="#1、由throw-new-Error-引发的探讨" class="headerlink" title="1、由throw new Error() 引发的探讨"></a>1、<a href="https://segmentfault.com/a/1190000010779044">由throw new Error() 引发的探讨</a></h5><h5 id="2、PWA-饿了么实践"><a href="#2、PWA-饿了么实践" class="headerlink" title="2、PWA 饿了么实践"></a>2、<a href="https://zhuanlan.zhihu.com/p/27853228">PWA 饿了么实践</a></h5>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> JavaScript </tag>
             
         </tags>
       
@@ -112,11 +118,11 @@
     
     
     <entry>
-      <title>webpack【可替换模板字符串[name]/[id]/...等变量名释义】</title>
-      <link href="/2020/08/29/webpack-temp-string/"/>
-      <url>/2020/08/29/webpack-temp-string/</url>
+      <title>webpack【名词术语】</title>
+      <link href="/2020/08/29/webpack-terms/"/>
+      <url>/2020/08/29/webpack-terms/</url>
       
-        <content type="html"><![CDATA[<h3 id="webpack【可替换模板字符串】"><a href="#webpack【可替换模板字符串】" class="headerlink" title="webpack【可替换模板字符串】"></a>webpack【<strong>可替换模板字符串</strong>】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等占位符，这些占位符多是用来解决<strong>多个入口起点</strong>(entry point)、<strong>代码拆分</strong>(code splitting)或各种插件(plugin)创建<strong>多个 bundle</strong>时的名称或者lib。</p><p>webpack中通过内置的<a href="https://github.com/webpack/webpack/blob/master/lib/TemplatedPathPlugin.js">TemplatedPathPlugin</a>实现了占位符的替换处理工作。</p><h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    entry: &#123; <span class="attr">index</span>: <span class="string">&quot;./index.js&quot;</span> &#125;,</span><br><span class="line">    output: &#123; <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>[name]一般指的是entry入口定义的输入文件key值，例如此处为index。</p><p>多个入口key分别对应各自的[name]。</p><h5 id="2-id"><a href="#2-id" class="headerlink" title="2.[id]"></a>2.[id]</h5><p>模块标识符(module identifier)。</p><p>id一般用于动态加载模块时，一次构建后，动态加载模块生成的id 。</p><h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>模块标识符(module identifier)的 hash。</p><p>hash是有webpack是一次构建打包生成的hash。</p><h5 id="4-chunkhash"><a href="#4-chunkhash" class="headerlink" title="4.[chunkhash]"></a>4.[chunkhash]</h5><p>根据入口的每一个chunk的内容，生成独有的一份hash。webpack以js为入口，每一个入口通过配置合理的插件可以差分多个文件，例如剥离CSS等，但这些资源文件都归属一个chunk。</p><p>一旦chunk内容发生（可以理解为入口文件未做剥离前的文件构成发生改变），该chunk的hash就会发生变化。</p><h5 id="5-contenthash"><a href="#5-contenthash" class="headerlink" title="5.[contenthash]"></a>5.[contenthash]</h5><p>文件内容 hash，<strong>每个资源</strong>生成的 hash 都是不同的。</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="webpack【名词术语】"><a href="#webpack【名词术语】" class="headerlink" title="webpack【名词术语】"></a>webpack【名词术语】</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      entry: &#123;</span><br><span class="line">            index: [<span class="string">&quot;./index.js&quot;</span>,<span class="string">&quot;./src/index.js&quot;</span>],</span><br><span class="line">          entry: [<span class="string">&quot;./src/entry.js&quot;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="一、名词术语"><a href="#一、名词术语" class="headerlink" title="一、名词术语"></a>一、名词术语</h5><p>1.【<strong>modules</strong>】：<code>&quot;./index.js&quot;</code>、<code>&quot;./src/index.js&quot;</code> and <code>&quot;./src/entry.js&quot;</code> ( any other modules that are dependencies of these entry points)</p><p>2.【<strong>Chunks</strong>】：index、entry</p><p>3.【<strong>Bundles</strong>】：index、entry</p><p><strong>备注</strong>：如果配置中添加了source maps，split css等，意味着chunks:bundles = 1:2；</p><p>4.mode：</p><p>webpack运行时还会根据mode设置一个全局变量process.env.NODE_ENV,这里的process.env.NODE_ENV不是node中的环境变量,而是webpack.DefinePlugin中定义的全局变量,允许你根据不同的环境执行不同的代码.</p>]]></content>
       
       
       
@@ -131,11 +137,11 @@
     
     
     <entry>
-      <title>webpack【名词术语】</title>
-      <link href="/2020/08/29/webpack-terms/"/>
-      <url>/2020/08/29/webpack-terms/</url>
+      <title>webpack【可替换模板字符串[name]/[id]/...等变量名释义】</title>
+      <link href="/2020/08/29/webpack-temp-string/"/>
+      <url>/2020/08/29/webpack-temp-string/</url>
       
-        <content type="html"><![CDATA[<h3 id="webpack【名词术语】"><a href="#webpack【名词术语】" class="headerlink" title="webpack【名词术语】"></a>webpack【名词术语】</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      entry: &#123;</span><br><span class="line">            index: [<span class="string">&quot;./index.js&quot;</span>,<span class="string">&quot;./src/index.js&quot;</span>],</span><br><span class="line">          entry: [<span class="string">&quot;./src/entry.js&quot;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="一、名词术语"><a href="#一、名词术语" class="headerlink" title="一、名词术语"></a>一、名词术语</h5><p>1.【<strong>modules</strong>】：<code>&quot;./index.js&quot;</code>、<code>&quot;./src/index.js&quot;</code> and <code>&quot;./src/entry.js&quot;</code> ( any other modules that are dependencies of these entry points)</p><p>2.【<strong>Chunks</strong>】：index、entry</p><p>3.【<strong>Bundles</strong>】：index、entry</p><p><strong>备注</strong>：如果配置中添加了source maps，split css等，意味着chunks:bundles = 1:2；</p><p>4.mode：</p><p>webpack运行时还会根据mode设置一个全局变量process.env.NODE_ENV,这里的process.env.NODE_ENV不是node中的环境变量,而是webpack.DefinePlugin中定义的全局变量,允许你根据不同的环境执行不同的代码.</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="webpack【可替换模板字符串】"><a href="#webpack【可替换模板字符串】" class="headerlink" title="webpack【可替换模板字符串】"></a>webpack【<strong>可替换模板字符串</strong>】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等占位符，这些占位符多是用来解决<strong>多个入口起点</strong>(entry point)、<strong>代码拆分</strong>(code splitting)或各种插件(plugin)创建<strong>多个 bundle</strong>时的名称或者lib。</p><p>webpack中通过内置的<a href="https://github.com/webpack/webpack/blob/master/lib/TemplatedPathPlugin.js">TemplatedPathPlugin</a>实现了占位符的替换处理工作。</p><h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    entry: &#123; <span class="attr">index</span>: <span class="string">&quot;./index.js&quot;</span> &#125;,</span><br><span class="line">    output: &#123; <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>[name]一般指的是entry入口定义的输入文件key值，例如此处为index。</p><p>多个入口key分别对应各自的[name]。</p><h5 id="2-id"><a href="#2-id" class="headerlink" title="2.[id]"></a>2.[id]</h5><p>模块标识符(module identifier)。</p><p>id一般用于动态加载模块时，一次构建后，动态加载模块生成的id 。</p><h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>模块标识符(module identifier)的 hash。</p><p>hash是有webpack是一次构建打包生成的hash。</p><h5 id="4-chunkhash"><a href="#4-chunkhash" class="headerlink" title="4.[chunkhash]"></a>4.[chunkhash]</h5><p>根据入口的每一个chunk的内容，生成独有的一份hash。webpack以js为入口，每一个入口通过配置合理的插件可以差分多个文件，例如剥离CSS等，但这些资源文件都归属一个chunk。</p><p>一旦chunk内容发生（可以理解为入口文件未做剥离前的文件构成发生改变），该chunk的hash就会发生变化。</p><h5 id="5-contenthash"><a href="#5-contenthash" class="headerlink" title="5.[contenthash]"></a>5.[contenthash]</h5><p>文件内容 hash，<strong>每个资源</strong>生成的 hash 都是不同的。</p>]]></content>
       
       
       
