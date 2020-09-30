@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>tag: webpack [ 土堆先生 ]</title>
+  <title> [ 土堆先生 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -68,66 +68,91 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-<div class="page tag-page" id="tag">
-  <h3 title="webpack下的文章">webpack</h3>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/30/dll/">
-          webpack【dll】
-        </a>
-      
-      <time class="time" datetime="2020-08-29T16:00:00.000Z">
-        2020-08-30
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-09-24T02:20:29.703Z">
+        2020-09-24
       </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 2 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p>1.容器的概念</p>
+<p>传统容器是系统上的进程，通常具有以下三个特征：资源限制、安全约束、虚拟分离，<a target="_blank" rel="noopener" href="https://opensource.com/article/18/1/history-low-level-container-runtimes">戳~</a></p>
+<p>2.image</p>
+<p>文件的使用</p>
+<p> <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name jenkins -p <span class="number">8081</span>:<span class="number">8080</span> -v /data/jenkins_home:<span class="regexp">/var/</span>jenkins_home jenkins/jenkins:lts;</span><br><span class="line">备注：</span><br><span class="line">-d <span class="comment">//启动在后台</span></span><br><span class="line">--name <span class="comment">//容器名字</span></span><br><span class="line">-p <span class="comment">//端口映射（8081：宿主主机端口，8080：容器内部端口）</span></span><br><span class="line">-v <span class="comment">//数据卷挂载映射（/data/jenkins_home：宿主主机目录，另外一个即是容器目录）</span></span><br><span class="line">enkins/jenkins:lts <span class="comment">//Jenkins镜像（最新版）</span></span><br></pre></td></tr></table></figure>
+
+<p>备注：数据卷挂载映射说明</p>
+<p>Docker容器提供volume数据卷的方式，可以直接挂载宿主机文件或目录到容器里，可以理解为目录映射，这样就可以让所有的容器共享宿主机数据，从而只需要改变宿主机的数据源就能够影响到所有的容器数据，或者当容器意外删除的时候，宿主机的数据仍然有一份，便于容灾。</p>
+<p>Docker不存在垃圾回收机制，所以需要手动删除，避免过多占用空间。</p>
+
     </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/30/plugin-introduce/">
-          webpack【plugin-introduce】
-        </a>
-      
-      <time class="time" datetime="2020-08-29T16:00:00.000Z">
-        2020-08-30
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/Fast-Refresh/">
-          webpack【快速刷新fast-refresh】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/webpack-temp-string/">
-          webpack【可替换模板字符串[name]/[id]/...等变量名释义】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/webpack-terms/">
-          webpack【名词术语】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+
+  </div>
+</div>
+<!-- 删除许可说明 -->
+<!-- <div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div> -->
+<!-- 删除分享图片 -->
+<!-- <div class="share" style="width: 100%;">
+  <img src="https://kevinofneu-blog-static.oss-cn-beijing.aliyuncs.com/static/2018-12-10-qrcode_for_gh_ffacf5722095_258.jpg" alt="Running Geek" style="margin: auto; display: block;"/>
+
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">老铁们关注走一走，不迷路</div>
   
 </div>
+ -->
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/09/23/linux/" rel="next" title="Linux 服务器搭建deno">
+          Linux 服务器搭建deno
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/09/28/cookiePath/" rel="prev" title="cookie【path】">
+            cookie【path】
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
     </div>
 
     

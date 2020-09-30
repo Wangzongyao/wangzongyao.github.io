@@ -11,7 +11,7 @@
   <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
   
   
-    <meta name="keywords" content="前端" />
+    <meta name="keywords" content="cookie," />
   
 
   
@@ -19,7 +19,7 @@
   
   
   <link rel="icon" type="image/x-icon" href="/logo.png">
-  <title>tag: webpack [ 土堆先生 ]</title>
+  <title>cookie【path】 [ 土堆先生 ]</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -68,66 +68,105 @@
 
   <div class="container" id="content-outer">
     <div class="inner" id="content-inner">
-      
-<div class="page tag-page" id="tag">
-  <h3 title="webpack下的文章">webpack</h3>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/30/dll/">
-          webpack【dll】
-        </a>
-      
-      <time class="time" datetime="2020-08-29T16:00:00.000Z">
-        2020-08-30
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        cookie【path】
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-09-27T16:00:00.000Z">
+        2020-09-28
       </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cookie/" rel="tag">cookie</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">
+      <span id="busuanzi_value_page_pv"></span> 点击
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 2 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <h3 id="cookie【path】"><a href="#cookie【path】" class="headerlink" title="cookie【path】"></a>cookie【path】</h3><h5 id="一、浏览器对cookie的设置规则"><a href="#一、浏览器对cookie的设置规则" class="headerlink" title="一、浏览器对cookie的设置规则"></a>一、浏览器对cookie的设置规则</h5><ol>
+<li>当cookie的path设置了值不为null的时候，以设置的值为准</li>
+<li>当cookie的path为null时候，获取请求的URI的path值 <ol>
+<li>当URI的path值是以“/”结尾的时候，直接设置为cookie的path值</li>
+<li>当URI的path值不是以“/”结尾的时候，查看path里面是否有“/” <ol>
+<li>如果有“/”的话，直接截取到最后一个“/”，然后设置为cookie的path值。</li>
+<li>如果没有“/”的话，将cookie的path设置为”/”</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="二、基于规则的Demo说明"><a href="#二、基于规则的Demo说明" class="headerlink" title="二、基于规则的Demo说明"></a>二、基于规则的Demo说明</h5><p>A保存cookie：<a target="_blank" rel="noopener" href="http://localhost:8080/day06-2/Servlets/A">http://localhost:8080/day06-2/Servlets/A</a></p>
+<p>B保存cookie：<a target="_blank" rel="noopener" href="http://localhost:8080/day06-2/Servlets/B">http://localhost:8080/day06-2/Servlets/B</a></p>
+<p>访问C时的路径如下：<a target="_blank" rel="noopener" href="http://localhost:8080/day06-2/Servlets/C%E3%80%90%E4%BC%9A%E5%B8%A6B%E4%B8%8D%E5%B8%A6A%E3%80%91">http://localhost:8080/day06-2/Servlets/C【会带B不带A】</a></p>
+<p>访问D时的路径如下：<a target="_blank" rel="noopener" href="http://localhost:8080/day06-2/Servlets/D">http://localhost:8080/day06-2/Servlets/D</a> 【会带A也带B】</p>
+<h5 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h5><p>当你访问的资源路径包含了哪一个cookie的路径时，就会在请求的时候附带哪一个cookie；</p>
+<p>但是当你访问的资源包含了儿子的路径时，那么必须把父亲的cookie带上；</p>
+<p>当你访问的路径只包含了父亲的路径时，就只带父亲的路径，不带儿子的；</p>
+
     </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/30/plugin-introduce/">
-          webpack【plugin-introduce】
-        </a>
-      
-      <time class="time" datetime="2020-08-29T16:00:00.000Z">
-        2020-08-30
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/Fast-Refresh/">
-          webpack【快速刷新fast-refresh】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/webpack-temp-string/">
-          webpack【可替换模板字符串[name]/[id]/...等变量名释义】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
-  
-    <div class="tag-item">
-      
-        <a href="/2020/08/29/webpack-terms/">
-          webpack【名词术语】
-        </a>
-      
-      <time class="time" datetime="2020-08-28T16:00:00.000Z">
-        2020-08-29
-      </time>
-    </div>
+
+    <div>全文完。</div>
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie%E3%80%90path%E3%80%91"><span class="toc-text">cookie【path】</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AF%B9cookie%E7%9A%84%E8%AE%BE%E7%BD%AE%E8%A7%84%E5%88%99"><span class="toc-text">一、浏览器对cookie的设置规则</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E4%BA%8E%E8%A7%84%E5%88%99%E7%9A%84Demo%E8%AF%B4%E6%98%8E"><span class="toc-text">二、基于规则的Demo说明</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-text">三、总结</span></a></li></ol></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<!-- 删除许可说明 -->
+<!-- <div class="copyright">
+    <span>本作品采用</span>
+    <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div> -->
+<!-- 删除分享图片 -->
+<!-- <div class="share" style="width: 100%;">
+  <img src="https://kevinofneu-blog-static.oss-cn-beijing.aliyuncs.com/static/2018-12-10-qrcode_for_gh_ffacf5722095_258.jpg" alt="Running Geek" style="margin: auto; display: block;"/>
+
+  <div style="margin: auto; text-align: center; font-size: 0.8em; color: grey;">老铁们关注走一走，不迷路</div>
   
 </div>
+ -->
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/2020/09/24/docker/" rel="next" title="">
+          
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/2020/09/28/CICD/" rel="prev" title="CI/CD【持续集成与持续交付】">
+            CI/CD【持续集成与持续交付】
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
     </div>
 
     

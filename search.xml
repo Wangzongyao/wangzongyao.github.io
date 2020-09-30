@@ -4,6 +4,57 @@
   
     
     <entry>
+      <title>CI/CD【持续集成与持续交付】</title>
+      <link href="/2020/09/28/CICD/"/>
+      <url>/2020/09/28/CICD/</url>
+      
+        <content type="html"><![CDATA[<h3 id="CI-CD"><a href="#CI-CD" class="headerlink" title="CI/CD"></a>CI/CD</h3><p><a href="https://www.jianshu.com/p/5f671aca2b5a">https://www.jianshu.com/p/5f671aca2b5a</a></p><p><a href="https://www.zhihu.com/question/23444990">https://www.zhihu.com/question/23444990</a></p><p><a href="https://zhuanlan.zhihu.com/p/87265045">https://zhuanlan.zhihu.com/p/87265045</a></p><p><a href="https://blog.csdn.net/qq_28773159/article/details/102460081">https://blog.csdn.net/qq_28773159/article/details/102460081</a></p><p><a href="https://segmentfault.com/a/1190000023915935?utm_source=tag-newest">https://segmentfault.com/a/1190000023915935?utm_source=tag-newest</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> CI/CD </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>cookie【path】</title>
+      <link href="/2020/09/28/cookiePath/"/>
+      <url>/2020/09/28/cookiePath/</url>
+      
+        <content type="html"><![CDATA[<h3 id="cookie【path】"><a href="#cookie【path】" class="headerlink" title="cookie【path】"></a>cookie【path】</h3><h5 id="一、浏览器对cookie的设置规则"><a href="#一、浏览器对cookie的设置规则" class="headerlink" title="一、浏览器对cookie的设置规则"></a>一、浏览器对cookie的设置规则</h5><ol><li>当cookie的path设置了值不为null的时候，以设置的值为准</li><li>当cookie的path为null时候，获取请求的URI的path值 <ol><li>当URI的path值是以“/”结尾的时候，直接设置为cookie的path值</li><li>当URI的path值不是以“/”结尾的时候，查看path里面是否有“/” <ol><li>如果有“/”的话，直接截取到最后一个“/”，然后设置为cookie的path值。</li><li>如果没有“/”的话，将cookie的path设置为”/”</li></ol></li></ol></li></ol><h5 id="二、基于规则的Demo说明"><a href="#二、基于规则的Demo说明" class="headerlink" title="二、基于规则的Demo说明"></a>二、基于规则的Demo说明</h5><p>A保存cookie：<a href="http://localhost:8080/day06-2/Servlets/A">http://localhost:8080/day06-2/Servlets/A</a></p><p>B保存cookie：<a href="http://localhost:8080/day06-2/Servlets/B">http://localhost:8080/day06-2/Servlets/B</a></p><p>访问C时的路径如下：<a href="http://localhost:8080/day06-2/Servlets/C%E3%80%90%E4%BC%9A%E5%B8%A6B%E4%B8%8D%E5%B8%A6A%E3%80%91">http://localhost:8080/day06-2/Servlets/C【会带B不带A】</a></p><p>访问D时的路径如下：<a href="http://localhost:8080/day06-2/Servlets/D">http://localhost:8080/day06-2/Servlets/D</a> 【会带A也带B】</p><h5 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h5><p>当你访问的资源路径包含了哪一个cookie的路径时，就会在请求的时候附带哪一个cookie；</p><p>但是当你访问的资源包含了儿子的路径时，那么必须把父亲的cookie带上；</p><p>当你访问的路径只包含了父亲的路径时，就只带父亲的路径，不带儿子的；</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cookie </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="/2020/09/24/docker/"/>
+      <url>/2020/09/24/docker/</url>
+      
+        <content type="html"><![CDATA[<p>1.容器的概念</p><p>传统容器是系统上的进程，通常具有以下三个特征：资源限制、安全约束、虚拟分离，<a href="https://opensource.com/article/18/1/history-low-level-container-runtimes">戳~</a></p><p>2.image</p><p>文件的使用</p><p> <a href="https://hub.docker.com/">Docker Hub</a> </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name jenkins -p <span class="number">8081</span>:<span class="number">8080</span> -v /data/jenkins_home:<span class="regexp">/var/</span>jenkins_home jenkins/jenkins:lts;</span><br><span class="line">备注：</span><br><span class="line">-d <span class="comment">//启动在后台</span></span><br><span class="line">--name <span class="comment">//容器名字</span></span><br><span class="line">-p <span class="comment">//端口映射（8081：宿主主机端口，8080：容器内部端口）</span></span><br><span class="line">-v <span class="comment">//数据卷挂载映射（/data/jenkins_home：宿主主机目录，另外一个即是容器目录）</span></span><br><span class="line">enkins/jenkins:lts <span class="comment">//Jenkins镜像（最新版）</span></span><br></pre></td></tr></table></figure><p>备注：数据卷挂载映射说明</p><p>Docker容器提供volume数据卷的方式，可以直接挂载宿主机文件或目录到容器里，可以理解为目录映射，这样就可以让所有的容器共享宿主机数据，从而只需要改变宿主机的数据源就能够影响到所有的容器数据，或者当容器意外删除的时候，宿主机的数据仍然有一份，便于容灾。</p><p>Docker不存在垃圾回收机制，所以需要手动删除，避免过多占用空间。</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux 服务器搭建deno</title>
       <link href="/2020/09/23/linux/"/>
       <url>/2020/09/23/linux/</url>
@@ -99,6 +150,25 @@
     
     
     <entry>
+      <title>js【运行时】</title>
+      <link href="/2020/08/30/runtime/"/>
+      <url>/2020/08/30/runtime/</url>
+      
+        <content type="html"><![CDATA[<h3 id="JS运行时"><a href="#JS运行时" class="headerlink" title="JS运行时"></a>JS运行时</h3><p>以”错误提示”来讲这个问题:</p><p><strong>编</strong>时：写代码的的过程中编辑器例如VS Code等软件发生的错误提示;</p><p><strong>译</strong>时：就是你写好代码了准备生成 exe时的生成过程 中发生的错误提示. 意思是系统将你的代码翻译成机器代码时；</p><p><strong>运行</strong>时：exe打开运行，使用了发生的错误提示；</p><p>以deno举例：</p><p>为JS/TS运行时，提供<strong>运行环境</strong>，称为JS/TS的运行时；</p><p><strong>译</strong>时指将引入的例如JSX文件编译为JS/TS代码，提供给V8引擎；</p><p><strong>编</strong>时指书写的语法错误；</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> js runtime </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>webpack【快速刷新fast-refresh】</title>
       <link href="/2020/08/29/Fast-Refresh/"/>
       <url>/2020/08/29/Fast-Refresh/</url>
@@ -118,11 +188,11 @@
     
     
     <entry>
-      <title>webpack【名词术语】</title>
-      <link href="/2020/08/29/webpack-terms/"/>
-      <url>/2020/08/29/webpack-terms/</url>
+      <title>webpack【可替换模板字符串[name]/[id]/...等变量名释义】</title>
+      <link href="/2020/08/29/webpack-temp-string/"/>
+      <url>/2020/08/29/webpack-temp-string/</url>
       
-        <content type="html"><![CDATA[<h3 id="webpack【名词术语】"><a href="#webpack【名词术语】" class="headerlink" title="webpack【名词术语】"></a>webpack【名词术语】</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      entry: &#123;</span><br><span class="line">            index: [<span class="string">&quot;./index.js&quot;</span>,<span class="string">&quot;./src/index.js&quot;</span>],</span><br><span class="line">          entry: [<span class="string">&quot;./src/entry.js&quot;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="一、名词术语"><a href="#一、名词术语" class="headerlink" title="一、名词术语"></a>一、名词术语</h5><p>1.【<strong>modules</strong>】：<code>&quot;./index.js&quot;</code>、<code>&quot;./src/index.js&quot;</code> and <code>&quot;./src/entry.js&quot;</code> ( any other modules that are dependencies of these entry points)</p><p>2.【<strong>Chunks</strong>】：index、entry</p><p>3.【<strong>Bundles</strong>】：index、entry</p><p><strong>备注</strong>：如果配置中添加了source maps，split css等，意味着chunks:bundles = 1:2；</p><p>4.mode：</p><p>webpack运行时还会根据mode设置一个全局变量process.env.NODE_ENV,这里的process.env.NODE_ENV不是node中的环境变量,而是webpack.DefinePlugin中定义的全局变量,允许你根据不同的环境执行不同的代码.</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="webpack【可替换模板字符串】"><a href="#webpack【可替换模板字符串】" class="headerlink" title="webpack【可替换模板字符串】"></a>webpack【<strong>可替换模板字符串</strong>】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等占位符，这些占位符多是用来解决<strong>多个入口起点</strong>(entry point)、<strong>代码拆分</strong>(code splitting)或各种插件(plugin)创建<strong>多个 bundle</strong>时的名称或者lib。</p><p>webpack中通过内置的<a href="https://github.com/webpack/webpack/blob/master/lib/TemplatedPathPlugin.js">TemplatedPathPlugin</a>实现了占位符的替换处理工作。</p><h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    entry: &#123; <span class="attr">index</span>: <span class="string">&quot;./index.js&quot;</span> &#125;,</span><br><span class="line">    output: &#123; <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>[name]一般指的是entry入口定义的输入文件key值，例如此处为index。</p><p>多个入口key分别对应各自的[name]。</p><h5 id="2-id"><a href="#2-id" class="headerlink" title="2.[id]"></a>2.[id]</h5><p>模块标识符(module identifier)。</p><p>id一般用于动态加载模块时，一次构建后，动态加载模块生成的id 。</p><h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>模块标识符(module identifier)的 hash。</p><p>hash是有webpack是一次构建打包生成的hash。</p><h5 id="4-chunkhash"><a href="#4-chunkhash" class="headerlink" title="4.[chunkhash]"></a>4.[chunkhash]</h5><p>根据入口的每一个chunk的内容，生成独有的一份hash。webpack以js为入口，每一个入口通过配置合理的插件可以差分多个文件，例如剥离CSS等，但这些资源文件都归属一个chunk。</p><p>一旦chunk内容发生（可以理解为入口文件未做剥离前的文件构成发生改变），该chunk的hash就会发生变化。</p><h5 id="5-contenthash"><a href="#5-contenthash" class="headerlink" title="5.[contenthash]"></a>5.[contenthash]</h5><p>文件内容 hash，<strong>每个资源</strong>生成的 hash 都是不同的。</p>]]></content>
       
       
       
@@ -137,11 +207,11 @@
     
     
     <entry>
-      <title>webpack【可替换模板字符串[name]/[id]/...等变量名释义】</title>
-      <link href="/2020/08/29/webpack-temp-string/"/>
-      <url>/2020/08/29/webpack-temp-string/</url>
+      <title>webpack【名词术语】</title>
+      <link href="/2020/08/29/webpack-terms/"/>
+      <url>/2020/08/29/webpack-terms/</url>
       
-        <content type="html"><![CDATA[<h3 id="webpack【可替换模板字符串】"><a href="#webpack【可替换模板字符串】" class="headerlink" title="webpack【可替换模板字符串】"></a>webpack【<strong>可替换模板字符串</strong>】</h3><h4 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h4><p>在webpack中，常遇到[name]/[hash]/[id]等占位符，这些占位符多是用来解决<strong>多个入口起点</strong>(entry point)、<strong>代码拆分</strong>(code splitting)或各种插件(plugin)创建<strong>多个 bundle</strong>时的名称或者lib。</p><p>webpack中通过内置的<a href="https://github.com/webpack/webpack/blob/master/lib/TemplatedPathPlugin.js">TemplatedPathPlugin</a>实现了占位符的替换处理工作。</p><h4 id="二、名词解析"><a href="#二、名词解析" class="headerlink" title="二、名词解析"></a>二、名词解析</h4><h5 id="1-name"><a href="#1-name" class="headerlink" title="1.[name]"></a>1.[name]</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    entry: &#123; <span class="attr">index</span>: <span class="string">&quot;./index.js&quot;</span> &#125;,</span><br><span class="line">    output: &#123; <span class="attr">filename</span>: <span class="string">&quot;[name].bundle.js&quot;</span> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>[name]一般指的是entry入口定义的输入文件key值，例如此处为index。</p><p>多个入口key分别对应各自的[name]。</p><h5 id="2-id"><a href="#2-id" class="headerlink" title="2.[id]"></a>2.[id]</h5><p>模块标识符(module identifier)。</p><p>id一般用于动态加载模块时，一次构建后，动态加载模块生成的id 。</p><h5 id="3-hash"><a href="#3-hash" class="headerlink" title="3.[hash]"></a>3.[hash]</h5><p>模块标识符(module identifier)的 hash。</p><p>hash是有webpack是一次构建打包生成的hash。</p><h5 id="4-chunkhash"><a href="#4-chunkhash" class="headerlink" title="4.[chunkhash]"></a>4.[chunkhash]</h5><p>根据入口的每一个chunk的内容，生成独有的一份hash。webpack以js为入口，每一个入口通过配置合理的插件可以差分多个文件，例如剥离CSS等，但这些资源文件都归属一个chunk。</p><p>一旦chunk内容发生（可以理解为入口文件未做剥离前的文件构成发生改变），该chunk的hash就会发生变化。</p><h5 id="5-contenthash"><a href="#5-contenthash" class="headerlink" title="5.[contenthash]"></a>5.[contenthash]</h5><p>文件内容 hash，<strong>每个资源</strong>生成的 hash 都是不同的。</p>]]></content>
+        <content type="html"><![CDATA[<h3 id="webpack【名词术语】"><a href="#webpack【名词术语】" class="headerlink" title="webpack【名词术语】"></a>webpack【名词术语】</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">      entry: &#123;</span><br><span class="line">            index: [<span class="string">&quot;./index.js&quot;</span>,<span class="string">&quot;./src/index.js&quot;</span>],</span><br><span class="line">          entry: [<span class="string">&quot;./src/entry.js&quot;</span>]</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h5 id="一、名词术语"><a href="#一、名词术语" class="headerlink" title="一、名词术语"></a>一、名词术语</h5><p>1.【<strong>modules</strong>】：<code>&quot;./index.js&quot;</code>、<code>&quot;./src/index.js&quot;</code> and <code>&quot;./src/entry.js&quot;</code> ( any other modules that are dependencies of these entry points)</p><p>2.【<strong>Chunks</strong>】：index、entry</p><p>3.【<strong>Bundles</strong>】：index、entry</p><p><strong>备注</strong>：如果配置中添加了source maps，split css等，意味着chunks:bundles = 1:2；</p><p>4.mode：</p><p>webpack运行时还会根据mode设置一个全局变量process.env.NODE_ENV,这里的process.env.NODE_ENV不是node中的环境变量,而是webpack.DefinePlugin中定义的全局变量,允许你根据不同的环境执行不同的代码.</p>]]></content>
       
       
       
